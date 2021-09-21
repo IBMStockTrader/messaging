@@ -21,7 +21,7 @@ FROM openliberty/open-liberty:21.0.0.9-full-java11-openj9-ubi
 
 USER root
 
-COPY --from=build /usr/src/main/liberty/config /config/
+COPY src/main/liberty/config /config/
 
 # This script will add the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using featureUtility. 
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
