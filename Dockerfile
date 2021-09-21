@@ -12,12 +12,12 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-FROM maven:3.6-jdk-11-slim AS build
-COPY . /usr/
-RUN mvn -f /usr/pom.xml clean package
+# FROM maven:3.6-jdk-11-slim AS build
+# COPY . /usr/
+# RUN mvn -f /usr/pom.xml clean package
 
-# FROM websphere-liberty:microProfile3
-FROM openliberty/open-liberty:kernel-slim-java11-openj9-ubi
+# FROM openliberty/open-liberty:kernel-slim-java11-openj9-ubi
+FROM openliberty/open-liberty:21.0.0.9-full-java11-openj9-ubi
 
 USER root
 
@@ -25,10 +25,10 @@ COPY --from=build /usr/src/main/liberty/config /config/
 
 # This script will add the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using featureUtility. 
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
-RUN features.sh
+# RUN features.sh
 
-COPY --from=build /usr/messaging-ear/target/messaging-ear-1.0-SNAPSHOT.ear /config/apps/Messaging.ear
-COPY --from=build /usr/messaging-ear/target/prereqs/wmq.jmsra-9.2.2.0.rar /config/wmq.jmsra.rar
+COPY messaging-ear/target/messaging-ear-1.0-SNAPSHOT.ear /config/apps/Messaging.ear
+COPY messaging-ear/target/prereqs/wmq.jmsra-9.2.2.0.rar /config/wmq.jmsra.rar
 
 RUN chown -R 1001:0 /config/
 USER 1001
