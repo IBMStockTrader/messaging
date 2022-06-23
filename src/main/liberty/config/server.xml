@@ -1,5 +1,5 @@
 <!--
-       Copyright 2017-2021 IBM Corp All Rights Reserved
+       Copyright 2017-2022 IBM Corp All Rights Reserved
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -32,6 +32,8 @@
 
     <variable name="JWT_AUDIENCE" defaultValue="stock-trader"/>
     <variable name="JWT_ISSUER" defaultValue="http://stock-trader.ibm.com"/>
+
+    <variable name="MQ_KIND" defaultValue="ibm-mq"/>
     <variable name="MQ_URL" defaultValue="ssl://${MQ_HOST}:${MQ_PORT}"/>
 
     <logging traceSpecification="*=info" consoleLogLevel="INFO" />
