@@ -2,7 +2,7 @@
     <authData id="MQ-Credentials" user="${env.MQ_ID}" password="${env.MQ_PASSWORD}"></authData>
 
     <resourceAdapter id="activemq" location="/config/activemq.rar">
-        <properties.activemq ServerUrl="ssl://${env.MQ_HOST}" />
+        <properties.activemq ServerUrl="${env.MQ_URL}" />
         <classloader apiTypeVisibility="+third-party"/>
     </resourceAdapter>
 
