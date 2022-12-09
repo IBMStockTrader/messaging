@@ -63,7 +63,7 @@
         <dependency>
             <groupId>com.ibm.websphere.appserver.api</groupId>
             <artifactId>com.ibm.websphere.appserver.api.jwt</artifactId>
-            <version>1.1.68</version>
+            <version>1.1.71</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -95,43 +95,4 @@
             </plugin>
         </plugins>
     </build>
-        <!-- Profile needed for microclimate to build this properly -->
-    <profiles>
-        <profile>
-            <id>microclimate</id>
-            <activation>
-                <property>
-                    <name>libertyEnv</name>
-                    <value>microclimate</value>
-                </property>
-            </activation>
-            <build>
-                <directory>${microclimateOutputDir}</directory>
-                <plugins>
-                    <!-- Enablement of liberty-maven plugin in microclimate -->
-                    <plugin>
-                        <groupId>io.openliberty.tools</groupId>
-                        <artifactId>liberty-maven-plugin</artifactId>
-                        <version>3.6</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <looseApplication>true</looseApplication>
-                            <appsDirectory>apps</appsDirectory>
-                            <installDirectory>/opt/ibm/wlp</installDirectory>
-                            <userDirectory>${project.build.directory}/liberty/wlp/usr</userDirectory>
-                            <configFile>${basedir}/src/main/liberty/config/server.xml</configFile>
-                            <serverEnv>${basedir}/src/main/liberty/config/server.env</serverEnv>
-                            <jvmOptionsFile>${basedir}/src/main/liberty/config/jvm.options</jvmOptionsFile>
-                            <include>usr</include>
-                            <bootstrapProperties>
-                                <default.http.port>9080</default.http.port>
-                                <default.https.port>9443</default.https.port>
-                            </bootstrapProperties>
-                            <installAppPackages>project</installAppPackages>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>        
 </project>
