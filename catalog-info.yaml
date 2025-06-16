@@ -33,6 +33,8 @@ spec:
     - messaging-api
   dependsOn:
     - component:default/notification-client-config
+  consumesApis:
+    - default/notification-api
 metadata:
   name: messaging
   labels:
